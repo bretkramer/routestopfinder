@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		88D0C15C2E16D287003D0A88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D0C15B2E16D287003D0A88 /* AppDelegate.swift */; };
+		88D0C15E2E16DCD8003D0A88 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 88D0C15D2E16DCD8003D0A88 /* GoogleMaps */; };
+		88D0C1602E16DCEB003D0A88 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 88D0C15F2E16DCEB003D0A88 /* GooglePlaces */; };
+		88D0C1622E16DCEB003D0A88 /* GooglePlacesSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88D0C1612E16DCEB003D0A88 /* GooglePlacesSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		88D0C13C2E16D0A5003D0A88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +34,7 @@
 		88D0C1242E16D0A3003D0A88 /* RouteStopFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteStopFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D0C13B2E16D0A5003D0A88 /* RouteStopFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouteStopFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D0C1452E16D0A5003D0A88 /* RouteStopFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouteStopFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88D0C15B2E16D287003D0A88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -65,6 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88D0C15E2E16DCD8003D0A88 /* GoogleMaps in Frameworks */,
+				88D0C1602E16DCEB003D0A88 /* GooglePlaces in Frameworks */,
+				88D0C1622E16DCEB003D0A88 /* GooglePlacesSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +99,7 @@
 		88D0C11B2E16D0A2003D0A88 = {
 			isa = PBXGroup;
 			children = (
+				88D0C15B2E16D287003D0A88 /* AppDelegate.swift */,
 				88D0C1262E16D0A3003D0A88 /* RouteStopFinder */,
 				88D0C13E2E16D0A5003D0A88 /* RouteStopFinderTests */,
 				88D0C1482E16D0A5003D0A88 /* RouteStopFinderUITests */,
@@ -125,6 +137,9 @@
 			);
 			name = RouteStopFinder;
 			packageProductDependencies = (
+				88D0C15D2E16DCD8003D0A88 /* GoogleMaps */,
+				88D0C15F2E16DCEB003D0A88 /* GooglePlaces */,
+				88D0C1612E16DCEB003D0A88 /* GooglePlacesSwift */,
 			);
 			productName = RouteStopFinder;
 			productReference = 88D0C1242E16D0A3003D0A88 /* RouteStopFinder.app */;
@@ -208,6 +223,10 @@
 			);
 			mainGroup = 88D0C11B2E16D0A2003D0A88;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				88D0C1592E16D123003D0A88 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
+				88D0C15A2E16D251003D0A88 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 88D0C1252E16D0A3003D0A88 /* Products */;
 			projectDirPath = "";
@@ -249,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88D0C15C2E16D287003D0A88 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +315,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RouteStopFinder/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Route Stop Finder";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -326,6 +348,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RouteStopFinder/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Route Stop Finder";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -575,6 +599,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		88D0C1592E16D123003D0A88 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		88D0C15A2E16D251003D0A88 /* XCRemoteSwiftPackageReference "ios-places-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-places-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		88D0C15D2E16DCD8003D0A88 /* GoogleMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88D0C1592E16D123003D0A88 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
+			productName = GoogleMaps;
+		};
+		88D0C15F2E16DCEB003D0A88 /* GooglePlaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88D0C15A2E16D251003D0A88 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlaces;
+		};
+		88D0C1612E16DCEB003D0A88 /* GooglePlacesSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88D0C15A2E16D251003D0A88 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlacesSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 88D0C11C2E16D0A3003D0A88 /* Project object */;
 }

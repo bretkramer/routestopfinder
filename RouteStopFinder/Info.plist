@@ -6,5 +6,30 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs your location to find places along your route.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>wendys</string>
+		<string>tacobell</string>
+		<string>whataburger</string>
+		<string>chickfila</string>
+		<string>starbucks</string>
+		<string>mcdonalds</string>
+		<string>bk</string>
+		<string>dunkin</string>
+		<string>dominos</string>
+		<string>pizzahut</string>
+		<string>kfc</string>
+		<string>sonic</string>
+		<string>panera</string>
+		<string>jackinthebox</string>
+		<string>chipotle</string>
+		<string>jimmyjohns</string>
+		<string>jerseymikes</string>
+		<string>carlsjr</string>
+		<string>hardees</string>
+		<string>krispykreme</string>
+	</array>
 </dict>
 </plist>
