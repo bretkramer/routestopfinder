@@ -1,4 +1,4 @@
-name: iOS CI/CD
+name: iOS CI/CD with TestFlight
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: macos-latest
     
     steps:
@@ -54,6 +54,15 @@ jobs:
         name: RouteStopFinder-ipa
         path: build/ipa/
         
+    - name: Upload to TestFlight
+      if: github.ref == 'refs/heads/main'
+      uses: apple-actions/upload-testflight@v1
+      with:
+        app-path: build/ipa/*.ipa
+        api-key: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+        api-key-id: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+        api-issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+        
     - name: Create Release
       if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
@@ -66,5 +75,7 @@ jobs:
           
           Build Number: ${{ github.run_number }}
           Commit: ${{ github.sha }}
+          
+          ✅ Uploaded to TestFlight
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
