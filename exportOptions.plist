@@ -5,7 +5,7 @@
     <key>method</key>
     <string>app-store</string>
     <key>teamID</key>
-    <string>YOUR_TEAM_ID</string>
+    <string>YOUR_ACTUAL_TEAM_ID_HERE</string>
     <key>uploadBitcode</key>
     <false/>
     <key>uploadSymbols</key>

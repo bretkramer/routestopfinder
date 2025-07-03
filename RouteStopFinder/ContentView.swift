@@ -337,8 +337,8 @@ struct ContentView: View {
             .onAppear {
                 setDefaultRangeIfNeeded()
             }
-            .onChange(of: userLocation?.latitude) { _ in setDefaultRangeIfNeeded() }
-            .onChange(of: destinationCoordinate?.latitude) { _ in setDefaultRangeIfNeeded() }
+            .onChange(of: userLocation?.latitude, perform: { _ in setDefaultRangeIfNeeded() })
+            .onChange(of: destinationCoordinate?.latitude, perform: { _ in setDefaultRangeIfNeeded() })
         }
         .hideKeyboardOnTap()
         .alert(isPresented: $showOrderAlert) {
@@ -851,14 +851,14 @@ struct DestinationTabView: View {
                         TextField("Enter address or business name", text: $manualDestination, onEditingChanged: { _ in }, onCommit: {})
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding(.horizontal)
-                            .onChange(of: manualDestination) { newValue in
+                            .onChange(of: manualDestination, perform: { newValue in
                                 let input = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
                                 if !input.isEmpty {
                                     fetchAutocompleteSuggestions(input)
                                 } else {
                                     autocompleteSuggestions = []
                                 }
-                            }
+                            })
                         
                         if !autocompleteSuggestions.isEmpty {
                             List(autocompleteSuggestions) { suggestion in
@@ -1364,7 +1364,10 @@ struct HelpView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") {
-                        UIApplication.shared.windows.first { $0.isKeyWindow }?.rootViewController?.dismiss(animated: true)
+                        UIApplication.shared.connectedScenes
+                            .compactMap { $0 as? UIWindowScene }
+                            .flatMap { $0.windows }
+                            .first { $0.isKeyWindow }?.rootViewController?.dismiss(animated: true)
                     }
                 }
             }
