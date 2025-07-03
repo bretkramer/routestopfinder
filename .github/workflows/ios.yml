@@ -1,0 +1,70 @@
+name: iOS CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: 'latest-stable'
+        
+    - name: Build and test
+      run: |
+        xcodebuild clean build test \
+          -project RouteStopFinder.xcodeproj \
+          -scheme RouteStopFinder \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+          -derivedDataPath build \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+          
+    - name: Archive app
+      run: |
+        xcodebuild archive \
+          -project RouteStopFinder.xcodeproj \
+          -scheme RouteStopFinder \
+          -archivePath build/RouteStopFinder.xcarchive \
+          -destination generic/platform=iOS \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+          
+    - name: Create IPA
+      run: |
+        xcodebuild -exportArchive \
+          -archivePath build/RouteStopFinder.xcarchive \
+          -exportPath build/ipa \
+          -exportOptionsPlist exportOptions.plist
+          
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: RouteStopFinder-ipa
+        path: build/ipa/
+        
+    - name: Create Release
+      if: github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: build/ipa/*.ipa
+        tag_name: v${{ github.run_number }}
+        name: Release v${{ github.run_number }}
+        body: |
+          Automated build from GitHub Actions
+          
+          Build Number: ${{ github.run_number }}
+          Commit: ${{ github.sha }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
