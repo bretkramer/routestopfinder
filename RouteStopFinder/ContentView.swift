@@ -337,8 +337,8 @@ struct ContentView: View {
             .onAppear {
                 setDefaultRangeIfNeeded()
             }
-            .onChange(of: userLocation?.latitude) { _ in setDefaultRangeIfNeeded() }
-            .onChange(of: destinationCoordinate?.latitude) { _ in setDefaultRangeIfNeeded() }
+            .onChange(of: userLocation?.latitude) { _, _ in setDefaultRangeIfNeeded() }
+            .onChange(of: destinationCoordinate?.latitude) { _, _ in setDefaultRangeIfNeeded() }
         }
         .hideKeyboardOnTap()
         .alert(isPresented: $showOrderAlert) {
@@ -851,7 +851,7 @@ struct DestinationTabView: View {
                         TextField("Enter address or business name", text: $manualDestination, onEditingChanged: { _ in }, onCommit: {})
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding(.horizontal)
-                            .onChange(of: manualDestination) { newValue in
+                            .onChange(of: manualDestination) { _, newValue in
                                 let input = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
                                 if !input.isEmpty {
                                     fetchAutocompleteSuggestions(input)
