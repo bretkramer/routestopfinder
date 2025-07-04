@@ -10,7 +10,7 @@ struct GoogleMapView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> GMSMapView {
         let camera = GMSCameraPosition.camera(withLatitude: userLocation?.latitude ?? 0, longitude: userLocation?.longitude ?? 0, zoom: 8)
-        let mapView = GMSMapView(frame: .zero)
+        let mapView = GMSMapView()
         mapView.camera = camera
         mapView.isMyLocationEnabled = true
         return mapView
