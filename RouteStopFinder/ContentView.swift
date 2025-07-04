@@ -337,8 +337,8 @@ struct ContentView: View {
             .onAppear {
                 setDefaultRangeIfNeeded()
             }
-            .onChange(of: userLocation?.latitude, perform: { _ in setDefaultRangeIfNeeded() })
-            .onChange(of: destinationCoordinate?.latitude, perform: { _ in setDefaultRangeIfNeeded() })
+            .onChange(of: userLocation?.latitude) { _ in setDefaultRangeIfNeeded() }
+            .onChange(of: destinationCoordinate?.latitude) { _ in setDefaultRangeIfNeeded() }
         }
         .hideKeyboardOnTap()
         .alert(isPresented: $showOrderAlert) {
@@ -851,14 +851,14 @@ struct DestinationTabView: View {
                         TextField("Enter address or business name", text: $manualDestination, onEditingChanged: { _ in }, onCommit: {})
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding(.horizontal)
-                            .onChange(of: manualDestination, perform: { newValue in
+                            .onChange(of: manualDestination) { newValue in
                                 let input = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
                                 if !input.isEmpty {
                                     fetchAutocompleteSuggestions(input)
                                 } else {
                                     autocompleteSuggestions = []
                                 }
-                            })
+                            }
                         
                         if !autocompleteSuggestions.isEmpty {
                             List(autocompleteSuggestions) { suggestion in
@@ -1138,7 +1138,7 @@ struct SearchSettingsTabView: View {
                                         }
                                         
                                         // --- Added time to route logic ---
-                                        guard let userLoc = userLocation, let destCoord = destinationCoordinate else { return }
+                                        guard let _ = userLocation, let _ = destinationCoordinate else { return }
                                         // First, get the original route time
                                         let originalUrlStr = "https://maps.googleapis.com/maps/api/directions/json?origin=\(originStr)&destination=\(destStr)&key=\(apiKey)"
                                         guard let originalUrl = URL(string: originalUrlStr) else { return }
